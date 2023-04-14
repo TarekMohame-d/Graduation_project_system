@@ -20,7 +20,7 @@ namespace Graduation_project_system
 
         private void button_register_Click(object sender, EventArgs e)
         {
-            if (txt_email.Text == "" || txt_password.Text == "" || txt_username.Text == "" || txt_id.Text == "")
+            if (txt_email.Text == "" || txt_password.Text == "" || txt_username.Text == "" || txt_id.Text == "" || (!radioButton1.Checked && !radioButton2.Checked))
             {
                 MessageBox.Show("There are fields thats empty", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -46,6 +46,11 @@ namespace Graduation_project_system
         {
             new LoginForm().Show();
             this.Hide();
+        }
+
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

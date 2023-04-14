@@ -44,8 +44,12 @@ namespace Graduation_project_system
 
         private void label5_Click(object sender, EventArgs e)
         {
-            new RegisterForm().Show();
-            this.Hide();
+            new ContactSupport().Show();
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -71,7 +71,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 335);
+            this.label4.Location = new System.Drawing.Point(76, 335);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 23);
             this.label4.TabIndex = 24;
@@ -82,11 +82,11 @@
             this.label5.AutoSize = true;
             this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(109, 360);
+            this.label5.Location = new System.Drawing.Point(105, 360);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 23);
+            this.label5.Size = new System.Drawing.Size(140, 23);
             this.label5.TabIndex = 25;
-            this.label5.Text = "Create Account";
+            this.label5.Text = "Contact support";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txt_username
@@ -157,11 +157,13 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

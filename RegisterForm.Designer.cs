@@ -41,6 +41,10 @@
             this.txt_id = new System.Windows.Forms.TextBox();
             this.checkBox_showpw = new System.Windows.Forms.CheckBox();
             this.button_register = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -50,9 +54,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(20, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 33);
+            this.label1.Size = new System.Drawing.Size(150, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Get Started";
+            this.label1.Text = "Add User";
             // 
             // label2
             // 
@@ -93,7 +97,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(77, 430);
+            this.label6.Location = new System.Drawing.Point(67, 460);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(217, 23);
             this.label6.TabIndex = 11;
@@ -104,7 +108,7 @@
             this.label7.AutoSize = true;
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(155, 455);
+            this.label7.Location = new System.Drawing.Point(145, 485);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 23);
             this.label7.TabIndex = 12;
@@ -176,7 +180,7 @@
             this.button_register.FlatAppearance.BorderSize = 0;
             this.button_register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_register.ForeColor = System.Drawing.Color.White;
-            this.button_register.Location = new System.Drawing.Point(25, 380);
+            this.button_register.Location = new System.Drawing.Point(25, 410);
             this.button_register.Name = "button_register";
             this.button_register.Size = new System.Drawing.Size(300, 40);
             this.button_register.TabIndex = 10;
@@ -184,12 +188,44 @@
             this.button_register.UseVisualStyleBackColor = false;
             this.button_register.Click += new System.EventHandler(this.button_register_Click);
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(173, 9);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(105, 27);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Professor";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(16, 9);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(94, 27);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Student";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Location = new System.Drawing.Point(28, 349);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(297, 39);
+            this.panel1.TabIndex = 14;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(350, 600);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button_register);
             this.Controls.Add(this.checkBox_showpw);
             this.Controls.Add(this.txt_id);
@@ -205,11 +241,15 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterForm_FormClosing);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,5 +270,8 @@
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.CheckBox checkBox_showpw;
         private System.Windows.Forms.Button button_register;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
