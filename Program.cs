@@ -16,7 +16,8 @@ namespace Graduation_project_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            //Application.Run(new StudentForm(studentName: "Tarek Mohamed", teamId: "10", teamLeader: "No"));
+            Application.Run(new RegisterForm());
         }
     }
 }
