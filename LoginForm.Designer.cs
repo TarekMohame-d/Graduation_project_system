@@ -71,7 +71,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 335);
+            this.label4.Location = new System.Drawing.Point(72, 390);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(199, 23);
             this.label4.TabIndex = 24;
@@ -82,7 +82,7 @@
             this.label5.AutoSize = true;
             this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.label5.Location = new System.Drawing.Point(105, 360);
+            this.label5.Location = new System.Drawing.Point(101, 415);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(140, 23);
             this.label5.TabIndex = 25;
@@ -132,7 +132,7 @@
             this.button_login.FlatAppearance.BorderSize = 0;
             this.button_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_login.ForeColor = System.Drawing.Color.White;
-            this.button_login.Location = new System.Drawing.Point(25, 275);
+            this.button_login.Location = new System.Drawing.Point(28, 299);
             this.button_login.Name = "button_login";
             this.button_login.Size = new System.Drawing.Size(300, 40);
             this.button_login.TabIndex = 23;
