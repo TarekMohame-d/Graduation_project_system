@@ -19,6 +19,9 @@ namespace Graduation_project_system
 
         private void buttonPanelItemsChange(string actionName)
         {
+            add_Insert_delete_User_panel.Visible = true;
+            profile_panel.Visible = false;
+            panel_view_allUsers.Visible = false;
             switch (actionName)
             {
                 case "add":
@@ -130,6 +133,9 @@ namespace Graduation_project_system
         private void viewAllUsers_btn_Click(object sender, EventArgs e)
         {
             buttonColorChange(viewAllUsers_btn, edit_btn, add_btn, delete_btn, logout_btn);
+            panel_view_allUsers.Visible = true;
+            profile_panel.Visible = false;
+            add_Insert_delete_User_panel.Visible = false;
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
@@ -148,6 +154,13 @@ namespace Graduation_project_system
         private void AdminDashboardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            profile_panel.Visible = true;
+            panel_view_allUsers.Visible = false;
+            add_Insert_delete_User_panel.Visible = false;
         }
     }
 }
