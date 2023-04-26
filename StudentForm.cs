@@ -12,17 +12,12 @@ namespace Graduation_project_system
 {
     public partial class StudentForm : Form
     {
-        String studentName, teamId, teamLeader;
-
-        public StudentForm(string studentName, string teamId, string teamLeader)
+        Users user;
+        public StudentForm(Users user)
         {
             InitializeComponent();
-            this.studentName = studentName;
-            this.teamId = teamId;
-            this.teamLeader = teamLeader;
-            label2.Text = studentName;
-            label3.Text = teamId;
-            label5.Text = teamLeader;
+            label2.Text = user.userName;
+            label3.Text = user.userID;
         }
 
         private void StudentForm_Paint(object sender, PaintEventArgs e)
