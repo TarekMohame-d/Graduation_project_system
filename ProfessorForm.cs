@@ -99,32 +99,80 @@ namespace Graduation_project_system
             }
         }
 
+        private void fillComboBoxes(string operation)
+        {
+            command = new OracleCommand();
+            command.Connection = conn;
+            switch (operation)
+            {
+                case "teamLeader":
+                    {
+                        comboBox_user_id.Items.Clear();
+                        command.CommandText = "GetTeamLeaderID";
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("id", OracleDbType.RefCursor, ParameterDirection.Output);
+                        OracleDataReader dr = command.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            comboBox_user_id.Items.Add(dr[0]);
+                        }
+                        dr.Close();
+                    }
+                    break;
+                case "professor":
+                    {
+                        comboBox_user_id.Items.Clear();
+                        command.CommandText = "GetProfessorID";
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("id", OracleDbType.RefCursor, ParameterDirection.Output);
+                        OracleDataReader dr = command.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            comboBox_user_id.Items.Add(dr[0]);
+                        }
+                        dr.Close();
+                    }
+                    break;
+                case "project":
+                    {
+                        comboBox_project_id.Items.Clear();
+                        command.CommandText = "select projectID from projects order by projectID";
+                        command.CommandType = CommandType.Text;
+                        OracleDataReader dr = command.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            comboBox_project_id.Items.Add(dr[0]);
+                        }
+                        dr.Close();
+                    }
+                    break;
+            }
+        }
+
         private void manage_users_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(manage_users_btn, manage_projects_btn, temp_btn1, temp_btn2, logout_btn);
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn);
             changePanelView("manageUsers");
         }
 
         private void viewAllUsers_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(temp_btn2, manage_projects_btn, manage_users_btn, temp_btn1, logout_btn);
+            buttonColorChange(accept_requests_button, manage_projects_btn, manage_users_btn, add_deliverables_button, logout_btn);
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(logout_btn, manage_projects_btn, manage_users_btn, temp_btn1, temp_btn2);
+            buttonColorChange(logout_btn, manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button);
             new LoginForm().Show();
             this.Hide();
         }
 
         private void AdminDashboardForm_Load(object sender, EventArgs e)
         {
-            buttonColorChange(manage_users_btn, manage_projects_btn, temp_btn1, temp_btn2, logout_btn);
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn);
             changePanelView("manageUsers");
             conn = new OracleConnection(ordb);
             conn.Open();
-            command = new OracleCommand();
-            command.Connection = conn;
         }
 
         private void AdminDashboardForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -134,7 +182,7 @@ namespace Graduation_project_system
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            buttonColorChange(manage_users_btn, manage_projects_btn, temp_btn1, temp_btn2, logout_btn, true);
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn, true);
             changePanelView("profile");
             profile_panel.Visible = true;
         }
@@ -170,45 +218,19 @@ namespace Graduation_project_system
 
         private void radioBtn_teamLeader_CheckedChanged(object sender, EventArgs e)
         {
-            comboBox_user_id.Items.Clear();
-            textBox_username.Text = "";
-            textBox_email.Text = "";
-            textBox_password.Text = "";
+            clear_user_data_button_Click(sender, e);
             if (radioBtn_teamLeader.Checked)
             {
-                command = new OracleCommand();
-                command.Connection = conn;
-                command.CommandText = "GetTeamLeaderID";
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("id", OracleDbType.RefCursor, ParameterDirection.Output);
-                OracleDataReader dr = command.ExecuteReader();
-                while (dr.Read())
-                {
-                    comboBox_user_id.Items.Add(dr[0]);
-                }
-                dr.Close();
+                fillComboBoxes("teamLeader");
             }
         }
 
         private void radioBtn_professor_CheckedChanged(object sender, EventArgs e)
         {
-            comboBox_user_id.Items.Clear();
-            textBox_username.Text = "";
-            textBox_email.Text = "";
-            textBox_password.Text = "";
+            clear_user_data_button_Click(sender, e);
             if (radioBtn_professor.Checked)
             {
-                command = new OracleCommand();
-                command.Connection = conn;
-                command.CommandText = "GetProfessorID";
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("id", OracleDbType.RefCursor, ParameterDirection.Output);
-                OracleDataReader dr = command.ExecuteReader();
-                while (dr.Read())
-                {
-                    comboBox_user_id.Items.Add(dr[0]);
-                }
-                dr.Close();
+                fillComboBoxes("professor");
             }
         }
 
@@ -223,7 +245,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "SELECT teamleaderID from teamleaders WHERE teamleaderemail =:email";
-                command.Parameters.Add("email", textBox_email.Text);
+                command.Parameters.Add("email", textBox_email.Text.ToLower());
                 OracleDataReader dr = command.ExecuteReader();
                 if (dr.Read())
                 {
@@ -235,12 +257,13 @@ namespace Graduation_project_system
                     command.Connection = conn;
                     command.CommandText = "insert into teamleaders values(userid_seq.nextval, :name, :email, :pw, null, null)";
                     command.Parameters.Add("name", textBox_username.Text);
-                    command.Parameters.Add("email", textBox_email.Text);
+                    command.Parameters.Add("email", textBox_email.Text.ToLower());
                     command.Parameters.Add("pw", textBox_password.Text);
                     int r = command.ExecuteNonQuery();
                     if (r != -1)
                     {
                         MessageBox.Show("Team Leader added successfully", "Add user succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                        fillComboBoxes("teamLeader");
                     }
                 }
             }
@@ -249,7 +272,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "SELECT professorID from professors WHERE profemail =:email";
-                command.Parameters.Add("email", textBox_email.Text);
+                command.Parameters.Add("email", textBox_email.Text.ToLower());
                 OracleDataReader dr = command.ExecuteReader();
                 if (dr.Read())
                 {
@@ -261,12 +284,13 @@ namespace Graduation_project_system
                     command.Connection = conn;
                     command.CommandText = "insert into professors values(userid_seq.nextval, :name, :email, :pw)";
                     command.Parameters.Add("name", textBox_username.Text);
-                    command.Parameters.Add("email", textBox_email.Text);
+                    command.Parameters.Add("email", textBox_email.Text.ToLower());
                     command.Parameters.Add("pw", textBox_password.Text);
                     int r = command.ExecuteNonQuery();
                     if (r != -1)
                     {
                         MessageBox.Show("Professor added successfully", "Add user succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                        fillComboBoxes("professor");
                     }
                 }
             }
@@ -274,37 +298,40 @@ namespace Graduation_project_system
 
         private void comboBox_id_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (radioBtn_teamLeader.Checked)
+            if (comboBox_user_id.SelectedItem != null)
             {
-                command = new OracleCommand();
-                command.Connection = conn;
-                command.CommandText = "select teamleaderusername, teamleaderemail, teamleaderpw from teamleaders where teamleaderID=:id";
-                command.CommandType = CommandType.Text;
-                command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
-                OracleDataReader dr = command.ExecuteReader();
-                if (dr.Read())
+                if (radioBtn_teamLeader.Checked)
                 {
-                    textBox_username.Text = dr[0].ToString();
-                    textBox_email.Text = dr[1].ToString();
-                    textBox_password.Text = dr[2].ToString();
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select teamleaderusername, teamleaderemail, teamleaderpw from teamleaders where teamleaderID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
+                    OracleDataReader dr = command.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        textBox_username.Text = dr[0].ToString();
+                        textBox_email.Text = dr[1].ToString();
+                        textBox_password.Text = dr[2].ToString();
+                    }
+                    dr.Close();
                 }
-                dr.Close();
-            }
-            else
-            {
-                command = new OracleCommand();
-                command.Connection = conn;
-                command.CommandText = "select profusername, profemail, profpassword from professors where professorID=:id";
-                command.CommandType = CommandType.Text;
-                command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
-                OracleDataReader dr = command.ExecuteReader();
-                if (dr.Read())
+                else
                 {
-                    textBox_username.Text = dr[0].ToString();
-                    textBox_email.Text = dr[1].ToString();
-                    textBox_password.Text = dr[2].ToString();
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select profusername, profemail, profpassword from professors where professorID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
+                    OracleDataReader dr = command.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        textBox_username.Text = dr[0].ToString();
+                        textBox_email.Text = dr[1].ToString();
+                        textBox_password.Text = dr[2].ToString();
+                    }
+                    dr.Close();
                 }
-                dr.Close();
             }
         }
 
@@ -319,7 +346,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "SELECT teamleaderID from teamleaders WHERE teamleaderemail =:email";
-                command.Parameters.Add("email", textBox_email.Text);
+                command.Parameters.Add("email", textBox_email.Text.ToLower());
                 OracleDataReader dr = command.ExecuteReader();
                 if (dr.Read() && dr[0].ToString() != comboBox_user_id.SelectedItem.ToString())
                 {
@@ -331,7 +358,7 @@ namespace Graduation_project_system
                     command.Connection = conn;
                     command.CommandText = "update teamleaders set teamleaderusername=:name, teamleaderemail=:email, teamleaderpw=:pw where teamleaderID=:id";
                     command.Parameters.Add("name", textBox_username.Text);
-                    command.Parameters.Add("email", textBox_email.Text);
+                    command.Parameters.Add("email", textBox_email.Text.ToLower());
                     command.Parameters.Add("pw", textBox_password.Text);
                     command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
                     int r = command.ExecuteNonQuery();
@@ -346,7 +373,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "SELECT professorID from professors WHERE profemail =:email";
-                command.Parameters.Add("email", textBox_email.Text);
+                command.Parameters.Add("email", textBox_email.Text.ToLower());
                 OracleDataReader dr = command.ExecuteReader();
                 if (dr.Read() && dr[0].ToString() != comboBox_user_id.SelectedItem.ToString())
                 {
@@ -358,7 +385,7 @@ namespace Graduation_project_system
                     command.Connection = conn;
                     command.CommandText = "update professors set profusername=:name, profemail=:email, profpassword=:pw where professorID=:id";
                     command.Parameters.Add("name", textBox_username.Text);
-                    command.Parameters.Add("email", textBox_email.Text);
+                    command.Parameters.Add("email", textBox_email.Text.ToLower());
                     command.Parameters.Add("pw", textBox_password.Text);
                     command.Parameters.Add("id", comboBox_user_id.SelectedItem.ToString());
                     int r = command.ExecuteNonQuery();
@@ -387,6 +414,7 @@ namespace Graduation_project_system
                 {
                     MessageBox.Show("User deleted successfully", "Delete user succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
                     clear_user_data_button_Click(sender, e);
+                    comboBox_user_id.Items.Remove(comboBox_user_id.SelectedItem);
                 }
             }
             else if (radioBtn_professor.Checked)
@@ -400,25 +428,17 @@ namespace Graduation_project_system
                 {
                     MessageBox.Show("User deleted successfully", "Delete user succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
                     clear_user_data_button_Click(sender, e);
+                    comboBox_user_id.Items.Remove(comboBox_user_id.SelectedItem);
                 }
             }
         }
 
         private void manage_projects_btn_Click(object sender, EventArgs e)
         {
-            comboBox_project_id.Items.Clear();
-            buttonColorChange(manage_projects_btn, manage_users_btn, temp_btn1, temp_btn2, logout_btn);
+            buttonColorChange(manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button, logout_btn);
+            button_clear_project_texboxs_Click(sender, e);
             changePanelView("manageProjects");
-            command = new OracleCommand();
-            command.Connection = conn;
-            command.CommandText = "select projectID from projects order by projectID";
-            command.CommandType = CommandType.Text;
-            OracleDataReader dr = command.ExecuteReader();
-            while (dr.Read())
-            {
-                comboBox_project_id.Items.Add(dr[0]);
-            }
-            dr.Close();
+            fillComboBoxes("project");
         }
 
         private void add_project_button_Click(object sender, EventArgs e)
@@ -436,7 +456,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "SELECT * from projects WHERE projectName=:projName";
-                command.Parameters.Add("projName", textBox_project_name.Text);
+                command.Parameters.Add("projName", textBox_project_name.Text.ToLower());
                 OracleDataReader dr = command.ExecuteReader();
                 if (dr.Read())
                 {
@@ -447,7 +467,7 @@ namespace Graduation_project_system
                     command = new OracleCommand();
                     command.Connection = conn;
                     command.CommandText = "insert into projects values(projectid_seq.nextval, :projName, :projDescription, :limit, :count, :profID)";
-                    command.Parameters.Add("projName", textBox_project_name.Text);
+                    command.Parameters.Add("projName", textBox_project_name.Text.ToLower());
                     command.Parameters.Add("projDescription", textBox_project_description.Text);
                     command.Parameters.Add("limit", textBox_project_limit.Text);
                     command.Parameters.Add("count", "0");
@@ -456,9 +476,7 @@ namespace Graduation_project_system
                     if (r != -1)
                     {
                         MessageBox.Show("Project added successfully", "Add project succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
-                        textBox_project_name.Text = "";
-                        textBox_project_description.Text = "";
-                        textBox_project_limit.Text = "";
+                        fillComboBoxes("project");
                     }
                 }
             }
@@ -466,16 +484,16 @@ namespace Graduation_project_system
 
         private void edit_project_button_Click(object sender, EventArgs e)
         {
-            if (textBox_project_name.Text == "" || textBox_project_description.Text == "" || textBox_prof_project_id.Text == "" || textBox_project_limit.Text == "")
-            {
-                MessageBox.Show("There are fields thats empty", "Edit project failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             command = new OracleCommand();
             command.Connection = conn;
             command.CommandText = "SELECT projectID from projects WHERE projectName=:projName";
-            command.Parameters.Add("projName", textBox_project_name.Text);
+            command.Parameters.Add("projName", textBox_project_name.Text.ToLower());
             OracleDataReader dr = command.ExecuteReader();
-            if (dr.Read() && dr[0].ToString() != comboBox_project_id.SelectedItem.ToString())
+            if (textBox_project_name.Text == "" || textBox_project_description.Text == "" || textBox_prof_project_id.Text == "" || textBox_project_limit.Text == "" || comboBox_project_id.SelectedItem == null)
+            {
+                MessageBox.Show("There are fields thats empty", "Edit project failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (dr.Read() && dr[0].ToString() != comboBox_project_id.SelectedItem.ToString())
             {
                 MessageBox.Show("Project with this name already exists", "Edit project failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -484,7 +502,7 @@ namespace Graduation_project_system
                 command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "update projects set projectName=:name, description=:des, limitOfAssignedUsers=:limit where projectID=:id";
-                command.Parameters.Add("name", textBox_project_name.Text);
+                command.Parameters.Add("name", textBox_project_name.Text.ToLower());
                 command.Parameters.Add("des", textBox_project_description.Text);
                 command.Parameters.Add("limit", textBox_project_limit.Text);
                 command.Parameters.Add("id", comboBox_project_id.SelectedItem.ToString());
@@ -494,45 +512,6 @@ namespace Graduation_project_system
                     MessageBox.Show("Project modified successfully", "Modified project succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
                 }
             }
-        }
-
-        private void comboBox_project_id_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            command = new OracleCommand();
-            command.Connection = conn;
-            command.CommandText = "select projectName, description, professorID from projects where projectID=:id";
-            command.CommandType = CommandType.Text;
-            command.Parameters.Add("id", comboBox_project_id.SelectedItem.ToString());
-            OracleDataReader dr = command.ExecuteReader();
-            if (dr.Read())
-            {
-                textBox_project_name.Text = dr[0].ToString();
-                textBox_project_description.Text = dr[1].ToString();
-                textBox_prof_project_id.Text = dr[2].ToString();
-            }
-            dr.Close();
-            command = new OracleCommand();
-            command.Connection = conn;
-            command.CommandText = "GetProjectAssignedlimit";
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("projId", int.Parse(comboBox_project_id.SelectedItem.ToString()));
-            command.Parameters.Add("limit", OracleDbType.Int32, ParameterDirection.Output);
-            command.ExecuteNonQuery();
-            textBox_project_limit.Text = command.Parameters["limit"].Value.ToString();
-        }
-
-        private void button_clear_project_texboxs_Click(object sender, EventArgs e)
-        {
-            textBox_project_name.Text = "";
-            textBox_project_description.Text = "";
-            textBox_project_limit.Text = "";
-        }
-
-        private void clear_user_data_button_Click(object sender, EventArgs e)
-        {
-            textBox_username.Text = "";
-            textBox_email.Text = "";
-            textBox_password.Text = "";
         }
 
         private void delete_project_button_Click(object sender, EventArgs e)
@@ -546,7 +525,52 @@ namespace Graduation_project_system
             {
                 MessageBox.Show("project deleted successfully", "Delete project succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
                 button_clear_project_texboxs_Click(sender, e);
+                comboBox_project_id.Items.Remove(comboBox_project_id.SelectedItem);
             }
+        }
+
+        private void comboBox_project_id_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_project_id.SelectedItem != null)
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "select projectName, description, professorID from projects where projectID=:id";
+                command.CommandType = CommandType.Text;
+                command.Parameters.Add("id", comboBox_project_id.SelectedItem.ToString());
+                OracleDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    textBox_project_name.Text = dr[0].ToString();
+                    textBox_project_description.Text = dr[1].ToString();
+                    textBox_prof_project_id.Text = dr[2].ToString();
+                }
+                dr.Close();
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "GetProjectAssignedlimit";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("projId", int.Parse(comboBox_project_id.SelectedItem.ToString()));
+                command.Parameters.Add("limit", OracleDbType.Int32, ParameterDirection.Output);
+                command.ExecuteNonQuery();
+                textBox_project_limit.Text = command.Parameters["limit"].Value.ToString();
+            }
+        }
+
+        private void button_clear_project_texboxs_Click(object sender, EventArgs e)
+        {
+            textBox_project_name.Text = "";
+            textBox_project_description.Text = "";
+            textBox_project_limit.Text = "";
+            comboBox_project_id.SelectedItem = null;
+        }
+
+        private void clear_user_data_button_Click(object sender, EventArgs e)
+        {
+            textBox_username.Text = "";
+            textBox_email.Text = "";
+            textBox_password.Text = "";
+            comboBox_user_id.SelectedItem = null;
         }
     }
 }

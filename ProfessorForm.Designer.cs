@@ -30,9 +30,9 @@
         {
             this.sideMenu_panel = new System.Windows.Forms.Panel();
             this.logout_btn = new System.Windows.Forms.Button();
-            this.temp_btn2 = new System.Windows.Forms.Button();
+            this.accept_requests_button = new System.Windows.Forms.Button();
             this.manage_projects_btn = new System.Windows.Forms.Button();
-            this.temp_btn1 = new System.Windows.Forms.Button();
+            this.add_deliverables_button = new System.Windows.Forms.Button();
             this.manage_users_btn = new System.Windows.Forms.Button();
             this.label_profile_name = new System.Windows.Forms.Label();
             this.pictureBox_profile = new System.Windows.Forms.PictureBox();
@@ -97,9 +97,9 @@
             // 
             this.sideMenu_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.sideMenu_panel.Controls.Add(this.logout_btn);
-            this.sideMenu_panel.Controls.Add(this.temp_btn2);
+            this.sideMenu_panel.Controls.Add(this.accept_requests_button);
             this.sideMenu_panel.Controls.Add(this.manage_projects_btn);
-            this.sideMenu_panel.Controls.Add(this.temp_btn1);
+            this.sideMenu_panel.Controls.Add(this.add_deliverables_button);
             this.sideMenu_panel.Controls.Add(this.manage_users_btn);
             this.sideMenu_panel.Controls.Add(this.label_profile_name);
             this.sideMenu_panel.Controls.Add(this.pictureBox_profile);
@@ -126,21 +126,21 @@
             this.logout_btn.UseVisualStyleBackColor = true;
             this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
             // 
-            // temp_btn2
+            // accept_requests_button
             // 
-            this.temp_btn2.FlatAppearance.BorderSize = 0;
-            this.temp_btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.temp_btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.temp_btn2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.temp_btn2.ForeColor = System.Drawing.Color.White;
-            this.temp_btn2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.temp_btn2.Location = new System.Drawing.Point(3, 490);
-            this.temp_btn2.Name = "temp_btn2";
-            this.temp_btn2.Size = new System.Drawing.Size(294, 49);
-            this.temp_btn2.TabIndex = 2;
-            this.temp_btn2.Text = "temp2";
-            this.temp_btn2.UseVisualStyleBackColor = true;
-            this.temp_btn2.Click += new System.EventHandler(this.viewAllUsers_btn_Click);
+            this.accept_requests_button.FlatAppearance.BorderSize = 0;
+            this.accept_requests_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.accept_requests_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.accept_requests_button.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accept_requests_button.ForeColor = System.Drawing.Color.White;
+            this.accept_requests_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.accept_requests_button.Location = new System.Drawing.Point(3, 490);
+            this.accept_requests_button.Name = "accept_requests_button";
+            this.accept_requests_button.Size = new System.Drawing.Size(294, 49);
+            this.accept_requests_button.TabIndex = 2;
+            this.accept_requests_button.Text = "   Accept Requests";
+            this.accept_requests_button.UseVisualStyleBackColor = true;
+            this.accept_requests_button.Click += new System.EventHandler(this.viewAllUsers_btn_Click);
             // 
             // manage_projects_btn
             // 
@@ -159,20 +159,20 @@
             this.manage_projects_btn.UseVisualStyleBackColor = true;
             this.manage_projects_btn.Click += new System.EventHandler(this.manage_projects_btn_Click);
             // 
-            // temp_btn1
+            // add_deliverables_button
             // 
-            this.temp_btn1.FlatAppearance.BorderSize = 0;
-            this.temp_btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.temp_btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.temp_btn1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.temp_btn1.ForeColor = System.Drawing.Color.White;
-            this.temp_btn1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.temp_btn1.Location = new System.Drawing.Point(3, 410);
-            this.temp_btn1.Name = "temp_btn1";
-            this.temp_btn1.Size = new System.Drawing.Size(294, 49);
-            this.temp_btn1.TabIndex = 4;
-            this.temp_btn1.Text = "tempButton1";
-            this.temp_btn1.UseVisualStyleBackColor = true;
+            this.add_deliverables_button.FlatAppearance.BorderSize = 0;
+            this.add_deliverables_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.add_deliverables_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_deliverables_button.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_deliverables_button.ForeColor = System.Drawing.Color.White;
+            this.add_deliverables_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.add_deliverables_button.Location = new System.Drawing.Point(3, 410);
+            this.add_deliverables_button.Name = "add_deliverables_button";
+            this.add_deliverables_button.Size = new System.Drawing.Size(294, 49);
+            this.add_deliverables_button.TabIndex = 4;
+            this.add_deliverables_button.Text = "    Add Deliverables";
+            this.add_deliverables_button.UseVisualStyleBackColor = true;
             // 
             // manage_users_btn
             // 
@@ -856,8 +856,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1600, 900);
             this.Controls.Add(this.manage_projects_panel);
-            this.Controls.Add(this.profile_panel);
             this.Controls.Add(this.manage_users_panel);
+            this.Controls.Add(this.profile_panel);
             this.Controls.Add(this.sideMenu_panel);
             this.Controls.Add(this.design_panel1);
             this.Controls.Add(this.design_panel2);
@@ -891,9 +891,9 @@
         private System.Windows.Forms.Label label_profile_name;
         private System.Windows.Forms.Button manage_users_btn;
         private System.Windows.Forms.Button manage_projects_btn;
-        private System.Windows.Forms.Button temp_btn1;
+        private System.Windows.Forms.Button add_deliverables_button;
         private System.Windows.Forms.Button logout_btn;
-        private System.Windows.Forms.Button temp_btn2;
+        private System.Windows.Forms.Button accept_requests_button;
         private System.Windows.Forms.Panel design_panel2;
         private System.Windows.Forms.Panel design_panel1;
         private System.Windows.Forms.Panel design_panel3;
