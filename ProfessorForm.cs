@@ -67,7 +67,7 @@ namespace Graduation_project_system
             }
         }
 
-        private void buttonColorChange(Button activeButton, Button btn2, Button btn3, Button btn4, Button btn5, bool imgClicked = false)
+        private void buttonColorChange(Button activeButton, Button btn2, Button btn3, Button btn4, Button btn5, Button btn6, bool imgClicked = false)
         {
             if (imgClicked == false)
             {
@@ -76,11 +76,13 @@ namespace Graduation_project_system
                 btn3.BackColor = Color.FromArgb(28, 28, 28);
                 btn4.BackColor = Color.FromArgb(28, 28, 28);
                 btn5.BackColor = Color.FromArgb(28, 28, 28);
+                btn6.BackColor = Color.FromArgb(28, 28, 28);
                 activeButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 122, 204);
                 btn2.FlatAppearance.MouseOverBackColor = Color.SkyBlue;
                 btn3.FlatAppearance.MouseOverBackColor = Color.SkyBlue;
                 btn4.FlatAppearance.MouseOverBackColor = Color.SkyBlue;
                 btn5.FlatAppearance.MouseOverBackColor = Color.SkyBlue;
+                btn6.FlatAppearance.MouseOverBackColor = Color.SkyBlue;
                 label_profile_name.BackColor = Color.FromArgb(28, 28, 28);
             }
             else
@@ -149,27 +151,53 @@ namespace Graduation_project_system
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn, button_feedback, true);
+            changePanelView("profile");
+            profile_panel.Visible = true;
+        }
+
         private void manage_users_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn);
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn, button_feedback);
             changePanelView("manageUsers");
         }
 
-        private void viewAllUsers_btn_Click(object sender, EventArgs e)
+        private void manage_projects_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(accept_requests_button, manage_projects_btn, manage_users_btn, add_deliverables_button, logout_btn);
+            buttonColorChange(manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button, logout_btn, button_feedback);
+            button_clear_project_texboxs_Click(sender, e);
+            changePanelView("manageProjects");
+            fillComboBoxes("project");
+        }
+
+        private void add_deliverables_button_Click(object sender, EventArgs e)
+        {
+            buttonColorChange(add_deliverables_button, accept_requests_button, manage_projects_btn, manage_users_btn, logout_btn, button_feedback);
+            new AddDeliverablesForm(user.userID).ShowDialog();
+        }
+
+        private void button_feedback_Click(object sender, EventArgs e)
+        {
+            buttonColorChange(button_feedback, logout_btn, manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button);
+        }
+
+        private void accept_requests_button_Click(object sender, EventArgs e)
+        {
+            buttonColorChange(accept_requests_button, manage_projects_btn, manage_users_btn, add_deliverables_button, logout_btn, button_feedback);
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
         {
-            buttonColorChange(logout_btn, manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button);
+            buttonColorChange(logout_btn, manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button, button_feedback);
             new LoginForm().Show();
             this.Hide();
         }
 
         private void AdminDashboardForm_Load(object sender, EventArgs e)
         {
-            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn);
+            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn, button_feedback);
             changePanelView("manageUsers");
             conn = new OracleConnection(ordb);
             conn.Open();
@@ -178,13 +206,6 @@ namespace Graduation_project_system
         private void AdminDashboardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            buttonColorChange(manage_users_btn, manage_projects_btn, add_deliverables_button, accept_requests_button, logout_btn, true);
-            changePanelView("profile");
-            profile_panel.Visible = true;
         }
 
         private void button_profile_save_Click(object sender, EventArgs e)
@@ -431,14 +452,6 @@ namespace Graduation_project_system
                     comboBox_user_id.Items.Remove(comboBox_user_id.SelectedItem);
                 }
             }
-        }
-
-        private void manage_projects_btn_Click(object sender, EventArgs e)
-        {
-            buttonColorChange(manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button, logout_btn);
-            button_clear_project_texboxs_Click(sender, e);
-            changePanelView("manageProjects");
-            fillComboBoxes("project");
         }
 
         private void add_project_button_Click(object sender, EventArgs e)

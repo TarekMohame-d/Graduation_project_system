@@ -73,6 +73,26 @@ namespace Graduation_project_system.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_deliverable_24 {
+            get {
+                object obj = ResourceManager.GetObject("add_deliverable_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_deliverable_32 {
+            get {
+                object obj = ResourceManager.GetObject("add_deliverable_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_project_32 {
             get {
                 object obj = ResourceManager.GetObject("add_project_32", resourceCulture);
@@ -123,6 +143,16 @@ namespace Graduation_project_system.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap feedback_32 {
+            get {
+                object obj = ResourceManager.GetObject("feedback_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logout {
             get {
                 object obj = ResourceManager.GetObject("logout", resourceCulture);
@@ -156,6 +186,16 @@ namespace Graduation_project_system.Properties {
         internal static System.Drawing.Bitmap project_24 {
             get {
                 object obj = ResourceManager.GetObject("project_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap request_24 {
+            get {
+                object obj = ResourceManager.GetObject("request_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
