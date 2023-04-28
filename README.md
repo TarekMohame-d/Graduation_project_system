@@ -1,4 +1,4 @@
-# Graduation_project_system
+# Graduation project system
 ## Introduction:
 The graduation project system is a system made to help seniors and professors 
 manage and present the graduation projects ideas and get acceptance and 
