@@ -48,6 +48,8 @@ namespace Graduation_project_system
                         profile_panel.Visible = true;
                         manage_users_panel.Visible = false;
                         manage_projects_panel.Visible = false;
+                        feedback_panel.Visible = false;
+                        requests_panel.Visible = false;
                     }
                     break;
                 case "manageUsers":
@@ -55,11 +57,33 @@ namespace Graduation_project_system
                         manage_users_panel.Visible = true;
                         profile_panel.Visible = false;
                         manage_projects_panel.Visible = false;
+                        feedback_panel.Visible = false;
+                        requests_panel.Visible = false;
                     }
                     break;
                 case "manageProjects":
                     {
                         manage_projects_panel.Visible = true;
+                        manage_users_panel.Visible = false;
+                        profile_panel.Visible = false;
+                        feedback_panel.Visible = false;
+                        requests_panel.Visible = false;
+                    }
+                    break;
+                case "feedback":
+                    {
+                        feedback_panel.Visible = true;
+                        manage_projects_panel.Visible = false;
+                        manage_users_panel.Visible = false;
+                        profile_panel.Visible = false;
+                        requests_panel.Visible = false;
+                    }
+                    break;
+                case "request":
+                    {
+                        requests_panel.Visible = true;
+                        feedback_panel.Visible = false;
+                        manage_projects_panel.Visible = false;
                         manage_users_panel.Visible = false;
                         profile_panel.Visible = false;
                     }
@@ -146,6 +170,31 @@ namespace Graduation_project_system
                             comboBox_project_id.Items.Add(dr[0]);
                         }
                         dr.Close();
+                    } break;
+                case "feedback":
+                    {
+                        comboBox_submitted_id.Items.Clear();
+                        command.CommandText = "select submittedID from submitted_deliverables order by submittedID";
+                        command.CommandType = CommandType.Text;
+                        OracleDataReader dr = command.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            comboBox_submitted_id.Items.Add(dr[0]);
+                        }
+                        dr.Close();
+                    }
+                    break;
+                case "request":
+                    {
+                        comboBox_request_id.Items.Clear();
+                        command.CommandText = "select requestID from requestProjects order by requestID";
+                        command.CommandType = CommandType.Text;
+                        OracleDataReader dr = command.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            comboBox_request_id.Items.Add(dr[0]);
+                        }
+                        dr.Close();
                     }
                     break;
             }
@@ -181,11 +230,15 @@ namespace Graduation_project_system
         private void button_feedback_Click(object sender, EventArgs e)
         {
             buttonColorChange(button_feedback, logout_btn, manage_projects_btn, manage_users_btn, add_deliverables_button, accept_requests_button);
+            changePanelView("feedback");
+            fillComboBoxes("feedback");
         }
 
         private void accept_requests_button_Click(object sender, EventArgs e)
         {
             buttonColorChange(accept_requests_button, manage_projects_btn, manage_users_btn, add_deliverables_button, logout_btn, button_feedback);
+            changePanelView("request");
+            fillComboBoxes("request");
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
@@ -584,6 +637,244 @@ namespace Graduation_project_system
             textBox_email.Text = "";
             textBox_password.Text = "";
             comboBox_user_id.SelectedItem = null;
+        }
+
+        private void comboBox_submitted_id_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_submitted_id.SelectedItem != null)
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "select submitted_info, feedback, projectID, teamleaderID, deliverableID from submitted_deliverables where submittedID=:id";
+                command.CommandType = CommandType.Text;
+                command.Parameters.Add("id", comboBox_submitted_id.SelectedItem.ToString());
+                OracleDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    textBox_submitted_link.Text = dr[0].ToString();
+                    textBox_feedback.Text = dr[1].ToString();
+                    textBox_teamLeader_id_feedback.Text = dr[3].ToString();
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select teamleaderusername from teamleaders where teamleaderID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[3].ToString());
+                    OracleDataReader dr2 = command.ExecuteReader();
+                    if (dr2.Read())
+                    {
+                        textBox_teamLeader_name_feedback.Text = dr2[0].ToString();
+                    }
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select deliverablename from deliverables where deliverableID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[4].ToString());
+                    OracleDataReader dr3 = command.ExecuteReader();
+                    if (dr3.Read())
+                    {
+                        textBox_deliverable_name_feedback.Text = dr3[0].ToString();
+                    }
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select projectName from projects where projectID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[2].ToString());
+                    OracleDataReader dr4 = command.ExecuteReader();
+                    if (dr4.Read())
+                    {
+                        textBox_project_name_feedback.Text = dr4[0].ToString();
+                    }
+                    dr2.Close();
+                    dr3.Close();
+                    dr4.Close();
+                }
+                dr.Close();
+            }
+        }
+
+        private void button_add_feedback_Click(object sender, EventArgs e)
+        {
+            if (textBox_submitted_link.Text == "" || textBox_project_name_feedback.Text == "" || textBox_deliverable_name_feedback.Text == "" || textBox_teamLeader_name_feedback.Text == "" || textBox_teamLeader_id_feedback.Text == "" || textBox_feedback.Text == "")
+            {
+                MessageBox.Show("There are fields thats empty", "Add feedback failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "update submitted_deliverables set feedback=:feedbk where submittedID=:id";
+                command.Parameters.Add("feedbk", textBox_feedback.Text);
+                command.Parameters.Add("id", comboBox_submitted_id.SelectedItem.ToString());
+                int r = command.ExecuteNonQuery();
+                if (r != -1)
+                {
+                    MessageBox.Show("Feedback added successfully", "Add feedback succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    fillComboBoxes("feedback");
+                    button_clear_feedback_Click(sender, e);
+                }
+            }
+        }
+
+        private void button_edit_feedback_Click(object sender, EventArgs e)
+        {
+            if (textBox_submitted_link.Text == "" || textBox_project_name_feedback.Text == "" || textBox_deliverable_name_feedback.Text == "" || textBox_teamLeader_name_feedback.Text == "" || textBox_teamLeader_id_feedback.Text == "" || textBox_feedback.Text == "")
+            {
+                MessageBox.Show("There are fields thats empty", "Edit feedback failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "update submitted_deliverables set feedback=:feedbk where submittedID=:id";
+                command.Parameters.Add("feedbk", textBox_feedback.Text);
+                command.Parameters.Add("id", comboBox_submitted_id.SelectedItem.ToString());
+                int r = command.ExecuteNonQuery();
+                if (r != -1)
+                {
+                    MessageBox.Show("Feedback modified successfully", "Modified feedback succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    fillComboBoxes("feedback");
+                    button_clear_feedback_Click(sender, e);
+                }
+            }
+        }
+
+        private void button_delete_feedback_Click(object sender, EventArgs e)
+        {
+            if (textBox_submitted_link.Text == "" || textBox_project_name_feedback.Text == "" || textBox_deliverable_name_feedback.Text == "" || textBox_teamLeader_name_feedback.Text == "" || textBox_teamLeader_id_feedback.Text == "" || textBox_feedback.Text == "")
+            {
+                MessageBox.Show("There are fields thats empty", "Edit feedback failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "update submitted_deliverables set feedback=:feedbk where submittedID=:id";
+                command.Parameters.Add("feedbk", null);
+                command.Parameters.Add("id", comboBox_submitted_id.SelectedItem.ToString());
+                int r = command.ExecuteNonQuery();
+                if (r != -1)
+                {
+                    MessageBox.Show("Feedback deleted successfully", "Delete feedback succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    fillComboBoxes("feedback");
+                    button_clear_feedback_Click(sender, e);
+                }
+            }
+        }
+
+        private void button_clear_feedback_Click(object sender, EventArgs e)
+        {
+            textBox_submitted_link.Text = "";
+            textBox_feedback.Text = "";
+            textBox_teamLeader_id_feedback.Text = "";
+            textBox_deliverable_name_feedback.Text = "";
+            textBox_teamLeader_name_feedback.Text = "";
+            textBox_project_name_feedback.Text = "";
+            comboBox_submitted_id.SelectedItem = null;
+        }
+
+        private void comboBox_request_id_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_request_id.SelectedItem != null)
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "select projectID, teamleaderID from requestProjects where requestID=:id";
+                command.CommandType = CommandType.Text;
+                command.Parameters.Add("id", comboBox_request_id.SelectedItem.ToString());
+                OracleDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select projectName from projects where projectID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[0].ToString());
+                    OracleDataReader dr2 = command.ExecuteReader();
+                    if (dr2.Read())
+                    {
+                        textBox_request_project_name.Text = dr2[0].ToString();
+                    }
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select teamleaderusername from teamleaders where teamleaderID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[1].ToString());
+                    OracleDataReader dr3 = command.ExecuteReader();
+                    if (dr3.Read())
+                    {
+                        textBox_request_teamLeader_name.Text = dr3[0].ToString();
+                    }
+                    dr2.Close();
+                    dr3.Close();
+                }
+                dr.Close();
+            }
+        }
+
+        private void button_request_accept_Click(object sender, EventArgs e)
+        {
+            if (textBox_request_project_name.Text == "" || textBox_request_teamLeader_name.Text == "" || comboBox_request_id.SelectedItem == null)
+            {
+                MessageBox.Show("There are fields thats empty", "Accept request failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                command = new OracleCommand();
+                command.Connection = conn;
+                command.CommandText = "select projectID, teamleaderID from requestProjects where requestID=:id";
+                command.CommandType = CommandType.Text;
+                command.Parameters.Add("id", comboBox_request_id.SelectedItem.ToString());
+                OracleDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    command = new OracleCommand();
+                    command.Connection = conn;
+                    command.CommandText = "select professorID from projects where projectID=:id";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.Add("id", dr[0].ToString());
+                    OracleDataReader dr2 = command.ExecuteReader();
+                    if (dr2.Read())
+                    {
+                        command = new OracleCommand();
+                        command.Connection = conn;
+                        command.CommandText = "update teamleaders set ProfessorID=:profID, projectID=:projID where teamleaderID=:id";
+                        command.CommandType = CommandType.Text;
+                        command.Parameters.Add("profID", dr2[0].ToString());
+                        command.Parameters.Add("projID", dr[0].ToString());
+                        command.Parameters.Add("id", dr[1].ToString());
+                        int r = command.ExecuteNonQuery();
+                        if (r != -1)
+                        {
+                            command = new OracleCommand();
+                            command.Connection = conn;
+                            command.CommandText = "delete from requestProjects where requestID=:id";
+                            command.Parameters.Add("id", comboBox_request_id.SelectedItem.ToString());
+                            int r2 = command.ExecuteNonQuery();
+                            if (r2 != -1)
+                            {
+                                command = new OracleCommand();
+                                command.Connection = conn;
+                                command.CommandText = "update projects set numberOfAssignedUsers = numberOfAssignedUsers + 1 where projectID=:id";
+                                command.CommandType = CommandType.Text;
+                                command.Parameters.Add("id", dr[0].ToString());
+                                int r3 = command.ExecuteNonQuery();
+                                if (r3 != -1)
+                                {
+                                    MessageBox.Show("Request accepted successfully", "Accept request succeeded", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                    button_clear_feedback_Click(sender, e);
+                                }
+                            }
+                        }
+                    }
+                    dr2.Close();
+                }
+                dr.Close();
+            }
+        }
+
+        private void view_users_button_Click(object sender, EventArgs e)
+        {
+            new ViewUsersForm().ShowDialog();
         }
     }
 }
