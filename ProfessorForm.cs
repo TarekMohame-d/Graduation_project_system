@@ -174,8 +174,9 @@ namespace Graduation_project_system
                 case "feedback":
                     {
                         comboBox_submitted_id.Items.Clear();
-                        command.CommandText = "select submittedID from submitted_deliverables order by submittedID";
+                        command.CommandText = "select submittedID from submitted_deliverables,PROFESSORS,PROJECTS where submitted_deliverables.PROJECTID = PROJECTS.PROJECTID and PROJECTS.PROFESSORID = PROFESSORS.PROFESSORID and PROFESSORS.PROFESSORID= :profid order by submittedID";
                         command.CommandType = CommandType.Text;
+                        command.Parameters.Add("profid", user.userID);
                         OracleDataReader dr = command.ExecuteReader();
                         while (dr.Read())
                         {
@@ -187,8 +188,9 @@ namespace Graduation_project_system
                 case "request":
                     {
                         comboBox_request_id.Items.Clear();
-                        command.CommandText = "select requestID from requestProjects order by requestID";
+                        command.CommandText = "select requestID from requestProjects,PROJECTS where requestProjects.PROJECTID = PROJECTS.PROJECTID and PROJECTS.PROFESSORID = :profid order by requestID";
                         command.CommandType = CommandType.Text;
+                        command.Parameters.Add("profid", user.userID);
                         OracleDataReader dr = command.ExecuteReader();
                         while (dr.Read())
                         {
@@ -329,10 +331,11 @@ namespace Graduation_project_system
                 {
                     command = new OracleCommand();
                     command.Connection = conn;
-                    command.CommandText = "insert into teamleaders values(userid_seq.nextval, :name, :email, :pw, null, null)";
+                    command.CommandText = "insert into teamleaders values(userid_seq.nextval, :name, :email, :pw, :profid, null)";
                     command.Parameters.Add("name", textBox_username.Text);
                     command.Parameters.Add("email", textBox_email.Text.ToLower());
                     command.Parameters.Add("pw", textBox_password.Text);
+                    command.Parameters.Add("profid", user.userID);
                     int r = command.ExecuteNonQuery();
                     if (r != -1)
                     {

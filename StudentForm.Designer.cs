@@ -29,13 +29,21 @@
         private void InitializeComponent()
         {
             this.sideMenu_panel = new System.Windows.Forms.Panel();
+            this.view_feedback_btn = new System.Windows.Forms.Button();
+            this.logout_btn = new System.Windows.Forms.Button();
+            this.request_project_btn = new System.Windows.Forms.Button();
+            this.submit_deliverables_button = new System.Windows.Forms.Button();
+            this.view_assigned_btn = new System.Windows.Forms.Button();
             this.label_profile_name = new System.Windows.Forms.Label();
+            this.pictureBox_profile = new System.Windows.Forms.PictureBox();
             this.submit_deliverable = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.feedback = new System.Windows.Forms.Panel();
+            this.feedbackbtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label_page_title = new System.Windows.Forms.Label();
             this.select_projectlabel = new System.Windows.Forms.Label();
@@ -45,26 +53,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.thirdpreferenececombo = new System.Windows.Forms.ComboBox();
             this.request_project = new System.Windows.Forms.Panel();
+            this.button_request_accept = new System.Windows.Forms.Button();
             this.view_assigned = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.feedbackbtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button_request_accept = new System.Windows.Forms.Button();
-            this.view_feedback_btn = new System.Windows.Forms.Button();
-            this.logout_btn = new System.Windows.Forms.Button();
-            this.request_project_btn = new System.Windows.Forms.Button();
-            this.submit_deliverables_button = new System.Windows.Forms.Button();
-            this.view_assigned_btn = new System.Windows.Forms.Button();
-            this.pictureBox_profile = new System.Windows.Forms.PictureBox();
             this.sideMenu_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_profile)).BeginInit();
             this.submit_deliverable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.feedback.SuspendLayout();
             this.request_project.SuspendLayout();
             this.view_assigned.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_profile)).BeginInit();
             this.SuspendLayout();
             // 
             // sideMenu_panel
@@ -83,6 +83,91 @@
             this.sideMenu_panel.Size = new System.Drawing.Size(300, 853);
             this.sideMenu_panel.TabIndex = 31;
             // 
+            // view_feedback_btn
+            // 
+            this.view_feedback_btn.FlatAppearance.BorderSize = 0;
+            this.view_feedback_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.view_feedback_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.view_feedback_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.view_feedback_btn.ForeColor = System.Drawing.Color.White;
+            this.view_feedback_btn.Image = global::Graduation_project_system.Properties.Resources.feedback_32;
+            this.view_feedback_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.view_feedback_btn.Location = new System.Drawing.Point(3, 490);
+            this.view_feedback_btn.Name = "view_feedback_btn";
+            this.view_feedback_btn.Size = new System.Drawing.Size(294, 49);
+            this.view_feedback_btn.TabIndex = 49;
+            this.view_feedback_btn.Text = "   View FeedBacks";
+            this.view_feedback_btn.UseVisualStyleBackColor = true;
+            this.view_feedback_btn.Click += new System.EventHandler(this.view_feedback_btn_Click);
+            // 
+            // logout_btn
+            // 
+            this.logout_btn.FlatAppearance.BorderSize = 0;
+            this.logout_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logout_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logout_btn.ForeColor = System.Drawing.Color.White;
+            this.logout_btn.Image = global::Graduation_project_system.Properties.Resources.logout;
+            this.logout_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.logout_btn.Location = new System.Drawing.Point(3, 575);
+            this.logout_btn.Name = "logout_btn";
+            this.logout_btn.Size = new System.Drawing.Size(294, 49);
+            this.logout_btn.TabIndex = 1;
+            this.logout_btn.Text = "Logout";
+            this.logout_btn.UseVisualStyleBackColor = true;
+            this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
+            // 
+            // request_project_btn
+            // 
+            this.request_project_btn.FlatAppearance.BorderSize = 0;
+            this.request_project_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.request_project_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.request_project_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.request_project_btn.ForeColor = System.Drawing.Color.White;
+            this.request_project_btn.Image = global::Graduation_project_system.Properties.Resources.project_24;
+            this.request_project_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.request_project_btn.Location = new System.Drawing.Point(3, 251);
+            this.request_project_btn.Name = "request_project_btn";
+            this.request_project_btn.Size = new System.Drawing.Size(294, 49);
+            this.request_project_btn.TabIndex = 3;
+            this.request_project_btn.Text = "    Request Project";
+            this.request_project_btn.UseVisualStyleBackColor = true;
+            this.request_project_btn.Click += new System.EventHandler(this.request_project_btn_Click);
+            // 
+            // submit_deliverables_button
+            // 
+            this.submit_deliverables_button.FlatAppearance.BorderSize = 0;
+            this.submit_deliverables_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.submit_deliverables_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submit_deliverables_button.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submit_deliverables_button.ForeColor = System.Drawing.Color.White;
+            this.submit_deliverables_button.Image = global::Graduation_project_system.Properties.Resources.add_deliverable_24;
+            this.submit_deliverables_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submit_deliverables_button.Location = new System.Drawing.Point(3, 410);
+            this.submit_deliverables_button.Name = "submit_deliverables_button";
+            this.submit_deliverables_button.Size = new System.Drawing.Size(294, 49);
+            this.submit_deliverables_button.TabIndex = 4;
+            this.submit_deliverables_button.Text = "   Submit Deliverable";
+            this.submit_deliverables_button.UseVisualStyleBackColor = true;
+            this.submit_deliverables_button.Click += new System.EventHandler(this.submit_deliverables_button_Click);
+            // 
+            // view_assigned_btn
+            // 
+            this.view_assigned_btn.FlatAppearance.BorderSize = 0;
+            this.view_assigned_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.view_assigned_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.view_assigned_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.view_assigned_btn.ForeColor = System.Drawing.Color.White;
+            this.view_assigned_btn.Image = global::Graduation_project_system.Properties.Resources.manage_user_32;
+            this.view_assigned_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.view_assigned_btn.Location = new System.Drawing.Point(0, 323);
+            this.view_assigned_btn.Name = "view_assigned_btn";
+            this.view_assigned_btn.Size = new System.Drawing.Size(294, 71);
+            this.view_assigned_btn.TabIndex = 5;
+            this.view_assigned_btn.Text = "View Assigned Deliverables";
+            this.view_assigned_btn.UseVisualStyleBackColor = true;
+            this.view_assigned_btn.Click += new System.EventHandler(this.view_assigned_btn_Click);
+            // 
             // label_profile_name
             // 
             this.label_profile_name.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -94,6 +179,16 @@
             this.label_profile_name.TabIndex = 6;
             this.label_profile_name.Text = "temp";
             this.label_profile_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox_profile
+            // 
+            this.pictureBox_profile.Image = global::Graduation_project_system.Properties.Resources.profile_img;
+            this.pictureBox_profile.Location = new System.Drawing.Point(78, 15);
+            this.pictureBox_profile.Name = "pictureBox_profile";
+            this.pictureBox_profile.Size = new System.Drawing.Size(145, 131);
+            this.pictureBox_profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_profile.TabIndex = 7;
+            this.pictureBox_profile.TabStop = false;
             // 
             // submit_deliverable
             // 
@@ -108,6 +203,24 @@
             this.submit_deliverable.Name = "submit_deliverable";
             this.submit_deliverable.Size = new System.Drawing.Size(1236, 700);
             this.submit_deliverable.TabIndex = 32;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(423, 576);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(300, 45);
+            this.button1.TabIndex = 80;
+            this.button1.Text = "        Submit Deliverable";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -160,6 +273,24 @@
             this.feedback.Name = "feedback";
             this.feedback.Size = new System.Drawing.Size(1252, 694);
             this.feedback.TabIndex = 35;
+            // 
+            // feedbackbtn
+            // 
+            this.feedbackbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.feedbackbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.feedbackbtn.FlatAppearance.BorderSize = 0;
+            this.feedbackbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.feedbackbtn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feedbackbtn.ForeColor = System.Drawing.Color.White;
+            this.feedbackbtn.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
+            this.feedbackbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.feedbackbtn.Location = new System.Drawing.Point(407, 381);
+            this.feedbackbtn.Name = "feedbackbtn";
+            this.feedbackbtn.Size = new System.Drawing.Size(300, 45);
+            this.feedbackbtn.TabIndex = 84;
+            this.feedbackbtn.Text = "        View Feedback";
+            this.feedbackbtn.UseVisualStyleBackColor = false;
+            this.feedbackbtn.Click += new System.EventHandler(this.feedbackbtn_Click);
             // 
             // label7
             // 
@@ -256,6 +387,24 @@
             this.request_project.TabIndex = 80;
             this.request_project.Paint += new System.Windows.Forms.PaintEventHandler(this.request_project_Paint);
             // 
+            // button_request_accept
+            // 
+            this.button_request_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.button_request_accept.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_request_accept.FlatAppearance.BorderSize = 0;
+            this.button_request_accept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_request_accept.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_request_accept.ForeColor = System.Drawing.Color.White;
+            this.button_request_accept.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
+            this.button_request_accept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_request_accept.Location = new System.Drawing.Point(443, 407);
+            this.button_request_accept.Name = "button_request_accept";
+            this.button_request_accept.Size = new System.Drawing.Size(300, 45);
+            this.button_request_accept.TabIndex = 79;
+            this.button_request_accept.Text = "        Request Projects";
+            this.button_request_accept.UseVisualStyleBackColor = false;
+            this.button_request_accept.Click += new System.EventHandler(this.button_request_accept_Click);
+            // 
             // view_assigned
             // 
             this.view_assigned.BackColor = System.Drawing.Color.Silver;
@@ -289,163 +438,14 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // feedbackbtn
-            // 
-            this.feedbackbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.feedbackbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.feedbackbtn.FlatAppearance.BorderSize = 0;
-            this.feedbackbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.feedbackbtn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.feedbackbtn.ForeColor = System.Drawing.Color.White;
-            this.feedbackbtn.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
-            this.feedbackbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.feedbackbtn.Location = new System.Drawing.Point(407, 381);
-            this.feedbackbtn.Name = "feedbackbtn";
-            this.feedbackbtn.Size = new System.Drawing.Size(300, 45);
-            this.feedbackbtn.TabIndex = 84;
-            this.feedbackbtn.Text = "        View Feedback";
-            this.feedbackbtn.UseVisualStyleBackColor = false;
-            this.feedbackbtn.Click += new System.EventHandler(this.feedbackbtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(423, 576);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 45);
-            this.button1.TabIndex = 80;
-            this.button1.Text = "        Submit Deliverable";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button_request_accept
-            // 
-            this.button_request_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.button_request_accept.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_request_accept.FlatAppearance.BorderSize = 0;
-            this.button_request_accept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_request_accept.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_request_accept.ForeColor = System.Drawing.Color.White;
-            this.button_request_accept.Image = global::Graduation_project_system.Properties.Resources.request_accpet_32;
-            this.button_request_accept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_request_accept.Location = new System.Drawing.Point(443, 407);
-            this.button_request_accept.Name = "button_request_accept";
-            this.button_request_accept.Size = new System.Drawing.Size(300, 45);
-            this.button_request_accept.TabIndex = 79;
-            this.button_request_accept.Text = "        Request Projects";
-            this.button_request_accept.UseVisualStyleBackColor = false;
-            this.button_request_accept.Click += new System.EventHandler(this.button_request_accept_Click);
-            // 
-            // view_feedback_btn
-            // 
-            this.view_feedback_btn.FlatAppearance.BorderSize = 0;
-            this.view_feedback_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.view_feedback_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.view_feedback_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.view_feedback_btn.ForeColor = System.Drawing.Color.White;
-            this.view_feedback_btn.Image = global::Graduation_project_system.Properties.Resources.feedback_32;
-            this.view_feedback_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.view_feedback_btn.Location = new System.Drawing.Point(3, 490);
-            this.view_feedback_btn.Name = "view_feedback_btn";
-            this.view_feedback_btn.Size = new System.Drawing.Size(294, 49);
-            this.view_feedback_btn.TabIndex = 49;
-            this.view_feedback_btn.Text = "   View FeedBacks";
-            this.view_feedback_btn.UseVisualStyleBackColor = true;
-            this.view_feedback_btn.Click += new System.EventHandler(this.view_feedback_btn_Click);
-            // 
-            // logout_btn
-            // 
-            this.logout_btn.FlatAppearance.BorderSize = 0;
-            this.logout_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logout_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logout_btn.ForeColor = System.Drawing.Color.White;
-            this.logout_btn.Image = global::Graduation_project_system.Properties.Resources.logout;
-            this.logout_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.logout_btn.Location = new System.Drawing.Point(3, 575);
-            this.logout_btn.Name = "logout_btn";
-            this.logout_btn.Size = new System.Drawing.Size(294, 49);
-            this.logout_btn.TabIndex = 1;
-            this.logout_btn.Text = "Logout";
-            this.logout_btn.UseVisualStyleBackColor = true;
-            this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
-            // 
-            // request_project_btn
-            // 
-            this.request_project_btn.FlatAppearance.BorderSize = 0;
-            this.request_project_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.request_project_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.request_project_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.request_project_btn.ForeColor = System.Drawing.Color.White;
-            this.request_project_btn.Image = global::Graduation_project_system.Properties.Resources.project_24;
-            this.request_project_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.request_project_btn.Location = new System.Drawing.Point(3, 251);
-            this.request_project_btn.Name = "request_project_btn";
-            this.request_project_btn.Size = new System.Drawing.Size(294, 49);
-            this.request_project_btn.TabIndex = 3;
-            this.request_project_btn.Text = "    Request Project";
-            this.request_project_btn.UseVisualStyleBackColor = true;
-            this.request_project_btn.Click += new System.EventHandler(this.request_project_btn_Click);
-            // 
-            // submit_deliverables_button
-            // 
-            this.submit_deliverables_button.FlatAppearance.BorderSize = 0;
-            this.submit_deliverables_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
-            this.submit_deliverables_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submit_deliverables_button.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submit_deliverables_button.ForeColor = System.Drawing.Color.White;
-            this.submit_deliverables_button.Image = global::Graduation_project_system.Properties.Resources.add_deliverable_24;
-            this.submit_deliverables_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submit_deliverables_button.Location = new System.Drawing.Point(3, 410);
-            this.submit_deliverables_button.Name = "submit_deliverables_button";
-            this.submit_deliverables_button.Size = new System.Drawing.Size(294, 49);
-            this.submit_deliverables_button.TabIndex = 4;
-            this.submit_deliverables_button.Text = "   Submit Deliverable";
-            this.submit_deliverables_button.UseVisualStyleBackColor = true;
-            this.submit_deliverables_button.Click += new System.EventHandler(this.submit_deliverables_button_Click);
-            // 
-            // view_assigned_btn
-            // 
-            this.view_assigned_btn.FlatAppearance.BorderSize = 0;
-            this.view_assigned_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.view_assigned_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.view_assigned_btn.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.view_assigned_btn.ForeColor = System.Drawing.Color.White;
-            this.view_assigned_btn.Image = global::Graduation_project_system.Properties.Resources.manage_user_32;
-            this.view_assigned_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.view_assigned_btn.Location = new System.Drawing.Point(0, 323);
-            this.view_assigned_btn.Name = "view_assigned_btn";
-            this.view_assigned_btn.Size = new System.Drawing.Size(294, 71);
-            this.view_assigned_btn.TabIndex = 5;
-            this.view_assigned_btn.Text = "View Assigned Deliverables";
-            this.view_assigned_btn.UseVisualStyleBackColor = true;
-            this.view_assigned_btn.Click += new System.EventHandler(this.view_assigned_btn_Click);
-            // 
-            // pictureBox_profile
-            // 
-            this.pictureBox_profile.Image = global::Graduation_project_system.Properties.Resources.profile_img;
-            this.pictureBox_profile.Location = new System.Drawing.Point(78, 15);
-            this.pictureBox_profile.Name = "pictureBox_profile";
-            this.pictureBox_profile.Size = new System.Drawing.Size(145, 131);
-            this.pictureBox_profile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_profile.TabIndex = 7;
-            this.pictureBox_profile.TabStop = false;
-            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1582, 853);
-            this.Controls.Add(this.feedback);
             this.Controls.Add(this.submit_deliverable);
+            this.Controls.Add(this.feedback);
             this.Controls.Add(this.request_project);
             this.Controls.Add(this.view_assigned);
             this.Controls.Add(this.label_page_title);
@@ -459,6 +459,7 @@
             this.Load += new System.EventHandler(this.StudentForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.StudentForm_Paint);
             this.sideMenu_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_profile)).EndInit();
             this.submit_deliverable.ResumeLayout(false);
             this.submit_deliverable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -469,7 +470,6 @@
             this.view_assigned.ResumeLayout(false);
             this.view_assigned.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_profile)).EndInit();
             this.ResumeLayout(false);
 
         }

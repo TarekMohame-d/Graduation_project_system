@@ -266,9 +266,9 @@ namespace Graduation_project_system
             {
                 deliverablecombo.Items.Add(dr[0].ToString());
             }
-            dr.Close();
+            dr.Close();*/
             buttonColorChange(view_feedback_btn, request_project_btn, submit_deliverables_button, view_assigned_btn, logout_btn);
-            changePanelView("feedback");*/
+            changePanelView("feedback");
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
@@ -290,8 +290,6 @@ namespace Graduation_project_system
 
         private void button1_Click(object sender, EventArgs e)
         { 
-
-
             string col1 = "";
            
             foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -369,14 +367,12 @@ namespace Graduation_project_system
             adapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
 
-            DataSet newDataSet = new DataSet();
+            /*DataSet newDataSet = new DataSet();
             DataTable newTable = ds.Tables[0].Clone();
             newTable.ImportRow(ds.Tables[0].Rows[0]);
             newDataSet.Tables.Add(newTable);
 
-
-            
-            dataGridView1.DataSource = newDataSet.Tables[0].Rows[0];
+            dataGridView1.DataSource = newDataSet.Tables[0].Rows[0];*/
 
             //// Retreive ProjectID
             command = new OracleCommand();
