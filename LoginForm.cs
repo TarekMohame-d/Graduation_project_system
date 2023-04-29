@@ -81,8 +81,10 @@ namespace Graduation_project_system
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            textBox_username.Text = "professor_1";
-            textBox_password.Text = "professor_1_123";
+            //ahmed
+            //professor_1     professor_1_123
+            textBox_username.Text = "teamLeader_1";
+            textBox_password.Text = "teamLeader_1_123";
             conn = new OracleConnection(ordb);
             conn.Open();
         }

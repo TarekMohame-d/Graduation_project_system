@@ -601,7 +601,7 @@ namespace Graduation_project_system
             {
                 command = new OracleCommand();
                 command.Connection = conn;
-                command.CommandText = "select projectName, description, professorID from projects where projectID=:id";
+                command.CommandText = "select projectName, description, professorID,LIMITOFASSIGNEDUSERS from projects where projectID=:id";
                 command.CommandType = CommandType.Text;
                 command.Parameters.Add("id", comboBox_project_id.SelectedItem.ToString());
                 OracleDataReader dr = command.ExecuteReader();
@@ -610,16 +610,17 @@ namespace Graduation_project_system
                     textBox_project_name.Text = dr[0].ToString();
                     textBox_project_description.Text = dr[1].ToString();
                     textBox_prof_project_id.Text = dr[2].ToString();
+                    textBox_project_limit.Text = dr[3].ToString();
                 }
                 dr.Close();
-                command = new OracleCommand();
+                /*command = new OracleCommand();
                 command.Connection = conn;
                 command.CommandText = "GetProjectAssignedlimit";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("projId", int.Parse(comboBox_project_id.SelectedItem.ToString()));
                 command.Parameters.Add("limit", OracleDbType.Int32, ParameterDirection.Output);
                 command.ExecuteNonQuery();
-                textBox_project_limit.Text = command.Parameters["limit"].Value.ToString();
+                textBox_project_limit.Text = command.Parameters["limit"].Value.ToString();*/
             }
         }
 

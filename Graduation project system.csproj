@@ -107,6 +107,12 @@
       <DependentUpon>CR1ViewUsers.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="feedbackReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>feedbackReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     <Compile Include="StudentForm.Designer.cs">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="viewing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viewing.Designer.cs">
+      <DependentUpon>viewing.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewUsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +156,10 @@
     <EmbeddedResource Include="CR1ViewUsers.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CR1ViewUsers.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="feedbackReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>feedbackReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -158,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viewing.resx">
+      <DependentUpon>viewing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewUsersForm.resx">
       <DependentUpon>ViewUsersForm.cs</DependentUpon>

@@ -1271,13 +1271,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1600, 900);
-            this.Controls.Add(this.manage_users_panel);
-            this.Controls.Add(this.requests_panel);
-            this.Controls.Add(this.feedback_panel);
+            this.Controls.Add(this.design_panel1);
             this.Controls.Add(this.manage_projects_panel);
+            this.Controls.Add(this.requests_panel);
+            this.Controls.Add(this.manage_users_panel);
+            this.Controls.Add(this.feedback_panel);
             this.Controls.Add(this.profile_panel);
             this.Controls.Add(this.sideMenu_panel);
-            this.Controls.Add(this.design_panel1);
             this.Controls.Add(this.design_panel2);
             this.Controls.Add(this.design_panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
